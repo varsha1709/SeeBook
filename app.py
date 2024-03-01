@@ -48,8 +48,11 @@ def recommend():
             data.append(item)
 
             print(data)
-
-        return render_template('recommend.html',data=data)
+         return render_template('recommend.html', data=data)
+    except IndexError:
+        # Handle the case where user input doesn't match any books
+        error_message = "No matching books found."
+        return render_template('recommend.html', error_message=error_message)return render_template('recommend.html',data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
