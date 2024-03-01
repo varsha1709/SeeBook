@@ -1,14 +1,13 @@
-from flask import Flask,render_template,request
+from flask import Flask, render_template, request
 import pickle
 import numpy as np
-
-#rb= read binary
-popular_df = pickle.load(open('popular.pk1', 'rb'))
-pt = pickle.load(open('pt.pk1','rb'))
-books = pickle.load(open('books.pk1','rb'))
-similarity_score = pickle.load(open('similarity_score.pk1','rb'))
-
 import signal
+
+# Load data from pickle files
+popular_df = pickle.load(open('popular.pk1', 'rb'))
+pt = pickle.load(open('pt.pk1', 'rb'))
+books = pickle.load(open('books.pk1', 'rb'))
+similarity_score = pickle.load(open('similarity_score.pk1', 'rb'))
 
 # Define a signal handler function
 def handler(signum, frame):
@@ -20,25 +19,23 @@ signal.signal(signal.SIGINT, handler)
 # Set the signal handler for SIGTERM (termination signal)
 signal.signal(signal.SIGTERM, handler)
 
-
 app = Flask(__name__)
-#Making GUI and then displaying data in it
-#HTML,CSS and BOOTSTRAP will be used in GUI
+
 @app.route('/')
 def index():
     return render_template('index.html',
-                           book_name = list(popular_df['Book-Title'].values),
-                           author = list(popular_df['Book-Author'].values),
-                           image = list(popular_df['Image-URL-M'].values),
-                           votes = list(popular_df['num_rating'].values),
-                           rating = list(popular_df['avg_rating'].values)
+                           book_name=list(popular_df['Book-Title'].values),
+                           author=list(popular_df['Book-Author'].values),
+                           image=list(popular_df['Image-URL-M'].values),
+                           votes=list(popular_df['num_rating'].values),
+                           rating=list(popular_df['avg_rating'].values)
                            )
 
 @app.route('/recommend')
 def recommend_ui():
     return render_template('recommend.html')
 
-@app.route('/recommend_books', methods=['post'])
+@app.route('/recommend_books', methods=['POST'])
 def recommend():
     user_input = request.form.get('user_input')
     try:
