@@ -8,6 +8,18 @@ pt = pickle.load(open('pt.pk1','rb'))
 books = pickle.load(open('books.pk1','rb'))
 similarity_score = pickle.load(open('similarity_score.pk1','rb'))
 
+import signal
+
+# Define a signal handler function
+def handler(signum, frame):
+    print('Signal handler called with signal', signum)
+
+# Set the signal handler for SIGINT (Ctrl+C)
+signal.signal(signal.SIGINT, handler)
+
+# Set the signal handler for SIGTERM (termination signal)
+signal.signal(signal.SIGTERM, handler)
+
 
 app = Flask(__name__)
 #Making GUI and then displaying data in it
