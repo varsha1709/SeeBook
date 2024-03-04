@@ -224,33 +224,22 @@
 # if __name__ == '__main__':
 #     main()
 
-
 import streamlit as st
 import pandas as pd
+import pickle
 
 # Load data from pickle files
 popular_df = pd.read_pickle('popular.pk1')
 
-# Define the recommend function
-def recommend(user_input, pt, similarity_score, books):
-    indices = np.where(pt.index == user_input)[0]
-    if len(indices) > 0:
-        index = indices[0]
-        similar_items = sorted(list(enumerate(similarity_score[index])), key=lambda x: x[1], reverse=True)[1:5]
+# Load pickle files
+with open('pt.pkl', 'rb') as f:
+    pt = pickle.load(f)
 
-        data = []
-        for i in similar_items:
-            item = []
-            temp_df = books[books['Book-Title'] == pt.index[i[0]]]
-            item.append(temp_df.drop_duplicates('Book-Title')['Book-Title'].values[0])
-            item.append(temp_df.drop_duplicates('Book-Title')['Book-Author'].values[0])
-            item.append(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].values[0])
+with open('similarity_score.pkl', 'rb') as f:
+    similarity_score = pickle.load(f)
 
-            data.append(tuple(item))
-
-        return data
-    else:
-        return None
+with open('books.pkl', 'rb') as f:
+    books = pickle.load(f)
 
 # Streamlit app code
 def main():
@@ -324,7 +313,7 @@ def main():
 
         # Button to trigger recommendation
         if st.button("Recommend"):
-            recommended_books = recommend(user_input, pt, similarity_score, books)
+            recommended_books = recommend(user_input)
 
             if recommended_books:
                 st.subheader("Recommended Books")
