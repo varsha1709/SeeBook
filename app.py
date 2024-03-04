@@ -1,40 +1,27 @@
-from flask import Flask,render_template,request
+import streamlit as st
 import pickle
 import numpy as np
 
-#rb= read binary
+# Load data from pickle files
 popular_df = pickle.load(open('popular.pk1', 'rb'))
 pt = pickle.load(open('pt.pk1','rb'))
 books = pickle.load(open('books.pk1','rb'))
 similarity_score = pickle.load(open('similarity_score.pk1','rb'))
 
+# Streamlit app code
+def main():
+    st.title("Book Recommendation App")
 
-app = Flask(__name__)
-#Making GUI and then displaying data in it
-#HTML,CSS and BOOTSTRAP will be used in GUI
-@app.route('/')
-def index():
-    return render_template('index.html',
-                           book_name = list(popular_df['Book-Title'].values),
-                           author = list(popular_df['Book-Author'].values),
-                           image = list(popular_df['Image-URL-M'].values),
-                           votes = list(popular_df['num_rating'].values),
-                           rating = list(popular_df['avg_rating'].values)
-                           )
+    # Sidebar for user input
+    user_input = st.text_input("Enter a book title:", "")
 
-@app.route('/recommend')
-def recommend_ui():
-    return render_template('recommend.html')
+    if st.button("Recommend"):
+        recommend(user_input)
 
-@app.route('/recommend_books', methods=['post'])
-def recommend():
-        user_input= request.form.get('user_input')
-        indices = np.where(pt.index == user_input)[0]
-        if len(indices) > 0:
-            index = indices[0]
-            # Continue with your code that uses the index
-        else:
-            index = np.where(pt.index == user_input)[0][0]
+def recommend(user_input):
+    indices = np.where(pt.index == user_input)[0]
+    if len(indices) > 0:
+        index = indices[0]
         similar_items = sorted(list(enumerate(similarity_score[index])), key=lambda x: x[1], reverse=True)[1:5]
 
         data = []
@@ -47,9 +34,12 @@ def recommend():
 
             data.append(item)
 
-            print(data)
-
-        return render_template('recommend.html',data=data)
+        # Display recommendations
+        for item in data:
+            st.write(item)
+    else:
+        st.write("Book not found. Please enter a valid book title.")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()
+
