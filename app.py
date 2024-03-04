@@ -444,7 +444,7 @@ def main():
         st.write('<div class="book-container">', unsafe_allow_html=True)
         for index, row in popular_df.iterrows():
             st.write('<div class="book">', unsafe_allow_html=True)
-            st.image(row['Image-URL-M'], caption=row['Book-Title'], use_column_width=True)
+            st.image(row['Image-URL-M'], caption=row['Book-Title'], width=150)
             st.write(f"**{row['Book-Title']}**")
             st.write(f"Votes: {row['num_rating']}")
             st.write(f"Rating: {row['avg_rating']}")
