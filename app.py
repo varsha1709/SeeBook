@@ -387,7 +387,6 @@
 
 
 
-
 import streamlit as st
 import pandas as pd
 
@@ -472,4 +471,15 @@ def main():
             else:
                 st.write("Book not found. Please enter a valid book title.")
 
-    elif page == 
+    elif page == "Contact":
+        st.write("# Contact Us")
+        st.write("For inquiries, please contact us at contact@example.com.")
+
+    elif page == "Code":
+        st.write("# Python Code")
+        with open(__file__, 'r') as f:
+            code = f.read()
+        st.code(code, language='python')
+
+if __name__ == '__main__':
+    main()
