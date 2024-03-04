@@ -412,11 +412,15 @@ def main():
             .book-container {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-around;
+                justify-content: space-between;
             }
             .book {
-                margin: 10px;
-                width: 20%;
+                width: 48%; /* Adjust width to fit two books per row */
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: white; /* Ensure background color for better visibility */
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
             }
             .book img {
                 max-width: 100%;
@@ -444,7 +448,7 @@ def main():
         st.write('<div class="book-container">', unsafe_allow_html=True)
         for index, row in popular_df.iterrows():
             st.write('<div class="book">', unsafe_allow_html=True)
-            st.image(row['Image-URL-M'], caption=row['Book-Title'], width=150)
+            st.image(row['Image-URL-M'], caption=row['Book-Title'], use_column_width=True)
             st.write(f"**{row['Book-Title']}**")
             st.write(f"Votes: {row['num_rating']}")
             st.write(f"Rating: {row['avg_rating']}")
