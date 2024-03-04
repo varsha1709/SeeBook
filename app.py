@@ -128,9 +128,8 @@
 
 
 
-To display the top 50 books on the home page, you can modify the `main()` function to show the list of top books when the user navigates to the "Home" page. Below is the updated code:
+#To display the top 50 books on the home page, you can modify the `main()` function to show the list of top books when the user navigates to the "Home" page. Below is the updated code:
 
-```python
 import streamlit as st
 import pandas as pd
 import numpy as np
