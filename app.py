@@ -231,15 +231,11 @@ import pickle
 # Load data from pickle files
 popular_df = pd.read_pickle('popular.pk1')
 
-# Load pickle files
-with open('pt.pkl', 'rb') as f:
-    pt = pickle.load(f)
-
-with open('similarity_score.pkl', 'rb') as f:
-    similarity_score = pickle.load(f)
-
-with open('books.pkl', 'rb') as f:
-    books = pickle.load(f)
+# # Load data from pickle files
+popular_df = pickle.load(open('popular.pk1', 'rb'))
+pt = pickle.load(open('pt.pk1','rb'))
+books = pickle.load(open('books.pk1','rb'))
+similarity_score = pickle.load(open('similarity_score.pk1','rb'))
 
 # Streamlit app code
 def main():
