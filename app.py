@@ -435,7 +435,7 @@ def main():
 
     # Logo
     logo_url = "https://github.com/varsha1709/seaBook/raw/main/logo.png"
-    st.markdown(f'<div class="logo"><img src="{logo_url}" alt="Seabook Logo"> Seabook</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="logo"><img src="{logo_url}" alt="SeaBook Logo"> SeaBook</div>', unsafe_allow_html=True)
 
     # Navbar
     st.sidebar.title("Navigation")
