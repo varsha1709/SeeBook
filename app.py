@@ -306,15 +306,15 @@ def main():
         if st.button("Recommend"):
             recommended_books = recommend_books(user_input)
 
-     def recommend_books(user_input):
-    # Your recommendation logic goes here
-    # Replace this placeholder logic with your actual recommendation algorithm
-    recommended_books = [
-        ("Recommended Book 1", "Author 1", "https://example.com/book1.jpg"),
-        ("Recommended Book 2", "Author 2", "https://example.com/book2.jpg"),
-        ("Recommended Book 3", "Author 3", "https://example.com/book3.jpg"),
-    ]
-    return recommended_books
+         def recommend_books(user_input):
+         # Your recommendation logic goes here
+         # Replace this placeholder logic with your actual recommendation algorithm
+             recommended_books = [
+             ("Recommended Book 1", "Author 1", "https://example.com/book1.jpg"),
+             ("Recommended Book 2", "Author 2", "https://example.com/book2.jpg"),
+             ("Recommended Book 3", "Author 3", "https://example.com/book3.jpg"),
+          ]
+         return recommended_books
 
             if recommended_books:
                 st.subheader("Recommended Books")
