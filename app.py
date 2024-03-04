@@ -183,12 +183,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-```
-
-In this updated code:
-
-- In the "Home" page, the `popular_df` DataFrame is displayed, showing the top 50 books.
-- The `popular_df.head(50)` function displays the first 50 rows of the DataFrame, which represents the top 50 books based on the data loaded from the `popular.pk1` file.
-
-With these adjustments, the home page of the Streamlit app will now display the top 50 books when the user navigates to it.
-
