@@ -434,7 +434,7 @@ def main():
     st.title("Book Recommendation App")
 
     # Logo
-    st.markdown('<div class="logo"><img src="https://example.com/logo.png" alt="Seabook Logo"> Seabook</div>', unsafe_allow_html=True)
+    st.markdown('<div class="logo"><img src="logo.png" alt="Seabook Logo"> Seabook</div>', unsafe_allow_html=True)
 
     # Navbar
     st.sidebar.title("Navigation")
