@@ -113,7 +113,7 @@ def main():
                 for book in recommended_books:
                     st.write("Title:", book[0])
                     st.write("Author:", book[1])
-                    st.image(book[2], caption="Book Cover", use_column_width=True)
+                    st.image(book[2], caption="Book Cover", width=150)
             else:
                 st.write("Book not found. Please enter a valid book title.")
 
