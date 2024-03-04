@@ -337,7 +337,7 @@ def main():
             st.write("<div style='display: flex;'>", unsafe_allow_html=True)
             for index, row in books_subset.iterrows():
                 st.write("<div style='margin-right: 20px;'>", unsafe_allow_html=True)
-                st.image(row['Image-URL-M'], caption=row['Book-Title'], use_column_width=True)
+                st.image(row['Image-URL-M'], caption=row['Book-Title'], width=150)
                 st.write(f"**{row['Book-Title']}**")
                 st.write(f"Votes: {row['num_rating']}")
                 st.write(f"Rating: {row['avg_rating']}")
