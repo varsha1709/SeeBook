@@ -416,7 +416,7 @@ def main():
             }
             .book {
                 margin: 10px;
-                width: 40%;
+                width: 20%;
             }
             .book img {
                 max-width: 100%;
